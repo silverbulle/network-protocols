@@ -83,6 +83,10 @@ cwnd = ssthresh + 3
 收到新 ACK 后进入拥塞避免阶段
 ```
 
+### ECN (显式拥塞通知)
+
+ECN 是丢包之外的另一种拥塞信号机制：路由器在拥塞时标记 IP ECN=CE（不丢包），接收方通过 TCP ECE 标志通知发送方减速。详见 [TCP ECN](../protocols/tcp.md#ecn-显式拥塞通知) 和 [IP ECN](../protocols/ip.md#ecn-状态)。
+
 ### TCP 变体
 | 变体 | 特点 | 适用场景 |
 |------|------|----------|

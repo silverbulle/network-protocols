@@ -442,6 +442,49 @@ Node Protection:
 
 ---
 
+## MPLS QoS 与 DSCP 映射
+
+MPLS 标签中的 EXP 字段承载 QoS 信息，通常从 IP DSCP 映射而来。
+
+### EXP ↔ DSCP 映射关系
+
+```
+IP DSCP (6 bit, 值 0~63)
+    │
+    ├──→ 取高 3 位 ──→ MPLS EXP (3 bit, 值 0~7)
+    │                    (简单映射: EXP = DSCP >> 3)
+    │
+    └──→ 自定义映射表 ──→ MPLS EXP
+                          (运营商可自定义 DSCP→EXP 的对应关系)
+```
+
+| DSCP 值 | PHB | EXP (简单映射) | 队列类型 |
+|---------|-----|---------------|---------|
+| 46 | EF | 5 | LLQ (低延迟队列) |
+| 34 | AF41 | 4 | 优先队列 |
+| 26 | AF31 | 3 | 保证带宽队列 |
+| 18 | AF21 | 2 | 保证带宽队列 |
+| 10 | AF11 | 1 | 默认队列 |
+| 0 | BE | 0 | 尽力而为 |
+
+### QoS 模型
+
+```
+Uniform Model (统一模型):
+  PE 入口: IP DSCP → MPLS EXP (复制)
+  LSR:     根据 EXP 做队列调度
+  PE 出口: MPLS EXP → IP DSCP (回写)
+  → 内层 IP DSCP 可能被修改
+
+Pipe Model (管道模型):
+  PE 入口: IP DSCP → MPLS EXP (复制)
+  LSR:     根据 EXP 做队列调度
+  PE 出口: 不回写 → IP DSCP 保持原始值
+  → 客户 DSCP 标记完全透传，不受运营商影响
+```
+
+---
+
 ## Segment Routing (SR-MPLS)
 
 ### 传统 MPLS vs Segment Routing

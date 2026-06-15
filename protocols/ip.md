@@ -70,6 +70,60 @@ L2/L3 边界  ┌────┴────┐
 | IHL | 4 | 头部长度（32bit 字），最小 5 (20B)，最大 15 (60B) |
 | Type of Service | 8 | DSCP (6bit) + ECN (2bit) |
 | Total Length | 16 | 整个数据报长度（含头部），最大 65535 |
+
+### DSCP 与 ECN (原 TOS 字节)
+
+IPv4 头部的第 2 字节（原称 Type of Service）现被划分为 DSCP + ECN：
+
+```
+ 原 TOS (RFC 791):
+  ┌──────┬──────┬────────┐
+  │ Precedence │ TOS │ MBZ │   IP Precedence (3bit) + TOS (4bit)
+  │   3 bit    │ 4bit│ 1bit│   (已过时)
+  └──────┴──────┴────────┘
+
+ 现 DSCP + ECN (RFC 2474 / RFC 3168):
+  ┌────────────┬─────┐
+  │   DSCP     │ ECN │
+  │   6 bit    │ 2bit│
+  │   0~63     │ 0~3 │
+  └────────────┴─────┘
+```
+
+#### DSCP 常用 PHB 值
+
+| PHB | DSCP | 说明 | 典型应用 |
+|-----|------|------|---------|
+| BE | 0 | Best Effort | 默认，无保障 |
+| EF | 46 | Expedited Forwarding | VoIP 语音，低延迟低抖动 |
+| AF41 | 34 | Assured Forwarding 4,1 | 视频会议 |
+| AF31 | 26 | AF 3,1 | 流媒体 |
+| AF21 | 18 | AF 2,1 | 重要业务数据 |
+| AF11 | 10 | AF 1,1 | 低优先业务 |
+| CS6 | 48 | Class Selector 6 | 网络控制（OSPF/BGP） |
+| CS7 | 56 | Class Selector 7 | 最高优先（保留） |
+
+> AF 命名规则：AF**xy**，x=类别(1~4)，y=丢弃优先(1~3)。x 越大越优先，y 越大拥塞时越容易被丢。
+
+#### ECN 状态
+
+| 值 | 名称 | 说明 |
+|----|------|------|
+| 00 | Not-ECT | 不支持 ECN（默认） |
+| 01 | ECT(1) | ECN 兼容传输 |
+| 10 | ECT(0) | ECN 兼容传输 |
+| 11 | CE | 拥塞已发生（路由器标记，不丢包） |
+
+ECN 与 TCP 配合：路由器标记 CE → 接收方通过 TCP ECE 标志通知发送方 → 发送方用 CWR 标志确认并减小拥塞窗口。详见 [TCP 拥塞控制](tcp.md#拥塞控制)。
+
+### IPv6 Traffic Class 与 Flow Label
+
+IPv6 中对应的 QoS 字段：
+
+| 字段 | 位 | 说明 |
+|------|----|------|
+| Traffic Class | 8 | 等同 IPv4 的 DSCP + ECN，含义完全一致 |
+| Flow Label | 20 | 标识同一数据流，用于路由器快速识别和特殊处理 |
 | Identification | 16 | 分片标识，同一数据报的各分片相同 |
 | Flags | 3 | DF (不分片), MF (更多分片) |
 | Fragment Offset | 13 | 分片偏移（单位：8字节） |

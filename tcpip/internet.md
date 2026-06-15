@@ -171,6 +171,31 @@ MPLS 转发:     入口压标签 → 中间换标签 → 出口弹标签 (精确
 
 > 详见 [protocols/mpls.md](../protocols/mpls.md)
 
+## QoS (服务质量)
+
+IP 层的 QoS 主要通过 DSCP/ECN 字段实现，分为两种服务模型：
+
+### DiffServ (区分服务)
+
+```
+DiffServ = 在 IP 头部标记优先级，路由器按标记做队列调度
+
+  终端:  设置 DSCP = EF (语音)
+          │
+  路由器: 根据 DSCP 值分配不同队列
+          ├── EF  → LLQ (低延迟队列，优先转发)
+          ├── AF  → 保证带宽队列
+          └── BE  → 尽力而为队列 (可能被丢弃)
+```
+
+| 模型 | 说明 | 可扩展性 |
+|------|------|---------|
+| **DiffServ** | 逐跳按 DSCP 标记做差异化处理 | 好（主流方案） |
+| **IntServ** | 端到端资源预留 (RSVP) | 差（状态太多） |
+
+> DSCP/ECN 字段详解见 [protocols/ip.md DSCP 与 ECN](../protocols/ip.md#dscp-与-ecn-原-tos-字节)
+> QoS 跨层字段总览见 [README QoS 章节](../README.md#qos-在各层的体现)
+
 ---
 
 ## 关联导航

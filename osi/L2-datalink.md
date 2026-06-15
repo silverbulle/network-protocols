@@ -65,11 +65,46 @@ IEEE 802 标准将数据链路层分为：
 
 ## VLAN（虚拟局域网）
 - 在交换机上逻辑划分广播域
-- IEEE 802.1Q 标签格式：
+- IEEE 802.1Q 标签格式（在普通以太网帧中插入 4 字节）：
 ```
-| Dest MAC | Src MAC | 0x8100 | TCI (VLAN ID) | EtherType | Data | FCS |
-                        ↑ Tag 标识    ↑ 12位 VID
+普通帧:
+| Dest MAC | Src MAC | EtherType (0x0800) | Data | FCS |
+
+802.1Q 带标签帧:
+| Dest MAC | Src MAC | 0x8100 |       TCI        | EtherType | Data | FCS |
+                                     ↑ 4 字节
 ```
+
+### TCI (Tag Control Information) 完整拆解
+
+```
+┌───────┬─────┬──────────────┐
+│  PCP  │ DEI │     VID      │
+│ 3 bit │1 bit│   12 bit     │
+├───────┼─────┼──────────────┤
+│优先级 │丢弃 │ VLAN ID      │
+│ 0~7   │ eligible │ 0~4095  │
+└───────┴─────┴──────────────┘
+```
+
+| 字段 | 位 | 说明 |
+|------|----|------|
+| **PCP** | 3 | Priority Code Point，L2 优先级（0=最低，7=最高），用于 QoS |
+| **DEI** | 1 | Drop Eligible Indicator，1=拥塞时可优先丢弃 |
+| **VID** | 12 | VLAN ID，0 和 4095 保留，可用范围 1~4094 |
+
+#### PCP 优先级与典型用途
+
+| PCP | 优先级 | 用途 | 对应 DSCP |
+|-----|--------|------|-----------|
+| 7 | 最高 | 网络控制 | CS7 (56) |
+| 6 | 很高 | 网间控制 | CS6 (48) |
+| 5 | 高 | 语音 (VoIP) | EF (46) |
+| 4 | 中高 | 视频会议 | AF41 (34) |
+| 3 | 中 | 流媒体 | AF31 (26) |
+| 2 | 中低 | 重要数据 | AF21 (18) |
+| 1 | 低 | 背景流量 | AF11 (10) |
+| 0 | 最低 | Best Effort | BE (0) |
 
 ## 常见数据链路层协议
 
