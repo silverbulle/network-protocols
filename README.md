@@ -570,6 +570,32 @@ MPLS 出口 (LER):
 | **MPLS → IP + 链路层** | MPLS 标签栈插入在 IP 头和 L2 帧头之间（Layer 2.5） | mpls → ip, link |
 | **MPLS VPN → BGP + VRF** | L3VPN 用双层标签 + MP-BGP 实现多租户隔离 | mpls |
 | **MPLS-TE → RSVP-TE** | 流量工程通过 RSVP-TE 预留带宽、指定路径 | mpls |
+| **IPsec → IP** | IPsec 在 IP 层插入 ESP/AH，提供逐跳或隧道加密（站点 VPN） | ip, [加密层级](protocols/encryption-layers.md) |
+| **TLS → TCP + 应用** | TLS 1.3 在 L4/L7 之间提供端到端加密（HTTPS/SMTPS 等） | tcp, [加密层级](protocols/encryption-layers.md) |
+| **MACsec → 以太网帧** | 802.1AE 在 L2 逐跳加密整个以太网帧 | L2-datalink, [加密层级](protocols/encryption-layers.md) |
+
+### 加密在各层的体现
+
+加密可以部署在从 L1 到 L7 的每一层，越底层保护范围越大，越上层部署越灵活。
+
+```
+L7 应用层    PGP/Signal/ECH             ── 端到端，保护应用数据
+L4 传输层    TLS 1.3 / QUIC             ── 端到端，保护字节流
+L3 网络层    IPsec ESP · WireGuard      ── 逐跳或隧道，保护 IP 包
+L2 链路层    MACsec · WPA3              ── 单跳，保护以太网帧/无线空口
+L1 物理层    QKD · 线路加密器           ── 物理信号级
+```
+
+| 场景 | 推荐加密 |
+|------|----------|
+| HTTPS / Web 应用 | TLS 1.3 (L4) |
+| 企业站点 VPN | IPsec 隧道模式 (L3) |
+| 远程办公 VPN | WireGuard / IPsec (L3) |
+| Wi-Fi 空口保护 | WPA3 (L2) |
+| 数据中心 DCI | MACsec + IPsec (L2+L3) |
+| 邮件端到端 | PGP/S/MIME (L7) + TLS (L4) |
+
+> 详见 [protocols/encryption-layers.md](protocols/encryption-layers.md)：各层加密协议对比、IPsec VPN 完整工作流、WireGuard 解析、MACsec/WPA3 机制
 
 ---
 
@@ -605,7 +631,8 @@ MPLS 出口 (LER):
 │   ├── dns.md                 ← DNS ─── 应用层，但使用 UDP/TCP 传输
 │   ├── http.md                ← HTTP ── 应用层，经 TCP/TLS 或 QUIC 传输
 │   ├── dhcp.md                ← DHCP ── 应用层，用 UDP 广播分配 IP
-│   └── mpls.md                ← MPLS ── Layer 2.5，标签交换，运营商骨干核心
+│   ├── mpls.md                ← MPLS ── Layer 2.5，标签交换，运营商骨干核心
+│   └── encryption-layers.md   ← 加密 ── 各层加密协议对比，IPsec/TLS/MACsec/WireGuard
 │
 └── references/                ← 参考资料
     └── rfc-index.md           ← RFC 文档索引

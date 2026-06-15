@@ -430,3 +430,4 @@ NBMA: Frame Relay / ATM → 需手动配邻居，选举 DR
 | 路由协议 | [tcpip/internet.md 路由部分](../tcpip/internet.md#路由协议) | IGP/EGP 对比与配置视角 |
 | IS-IS 详解 | [IS-IS 章节](#is-is-intermediate-system-to-intermediate-system) | 运营商骨干首选，L2 之上的链路状态协议 |
 | 现代演进 | [现代演进章节](#6-现代演进) | SR-MPLS、SRv6、BGP-LS、BGP EVPN |
+| 网络层加密 | [protocols/encryption-layers.md L3](../protocols/encryption-layers.md#l3-网络层加密) | IPsec 传输/隧道模式、WireGuard、IKEv2 协商流程 |

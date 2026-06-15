@@ -70,3 +70,4 @@ Client                          Server
 | 上层 | [L7 应用层](L7-application.md) | 为应用层提供数据格式服务 |
 | 下层 | [L5 会话层](L5-session.md) | 会话管理 |
 | 典型实现 | [HTTP (TLS)](../protocols/http.md#https-http-over-tls) | TLS 加密在概念上属于表示层 |
+| 加密跨层总览 | [protocols/encryption-layers.md](../protocols/encryption-layers.md) | L1-L7 各层加密协议对比，TLS 位于 L4/L7 之间 |

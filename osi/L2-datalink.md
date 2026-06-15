@@ -179,4 +179,5 @@ RTS/CTS 握手机制 (解决隐藏终端问题):
 | Layer 2.5 | [MPLS](../protocols/mpls.md) | 标签交换，插入在 L2 帧头和 L3 IP 头之间 |
 | 下层 | [L1 物理层](L1-physical.md) | 帧转换为比特流在物理介质上传输 |
 | 相关协议 | [ARP](../protocols/arp.md) | ARP 工作在 L2/L3 边界，为 IP 解析 MAC 地址 |
+| 链路层加密 | [protocols/encryption-layers.md L2](../protocols/encryption-layers.md#l2-链路层加密) | MACsec (802.1AE)、WPA3 无线加密 |
 | 以太网详解 | [tcpip/link.md 以太网部分](../tcpip/link.md#以太网-ethernet) | 帧格式、MTU、交换机原理 |
