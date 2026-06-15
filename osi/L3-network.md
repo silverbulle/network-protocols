@@ -414,7 +414,7 @@ NBMA: Frame Relay / ATM → 需手动配邻居，选举 DR
 | 172.16.0.0 - 172.31.255.255 | 172.16.0.0/12 | 中型网络 |
 | 192.168.0.0 - 192.168.255.255 | 192.168.0.0/16 | 小型网络/家庭 |
 
-> 详见 `protocols/ip.md`、`protocols/icmp.md`、`protocols/arp.md`
+> 详见 [protocols/ip.md](../protocols/ip.md)、[protocols/icmp.md](../protocols/icmp.md)、[protocols/arp.md](../protocols/arp.md)
 
 ---
 

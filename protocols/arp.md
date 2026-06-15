@@ -24,7 +24,7 @@ L2/L3    ┌──────────────────┐
 |------|------|------|
 | 为 IP 服务 | [IP](ip.md) | IP 发包前需 ARP 解析下一跳 MAC |
 | 工作在链路层 | [tcpip/link.md](../tcpip/link.md) | ARP 报文封装在以太网帧中（EtherType=0x0806） |
-| IPv6 替代 | [IP - NDP](ip.md#ndp-neighbor-discovery-protocol-消息) | IPv6 用 ICMPv6 NDP 替代了 ARP |
+| IPv6 替代 | [ICMPv6 - NDP](icmp.md#ndp-neighbor-discovery-protocol-消息) | IPv6 用 ICMPv6 NDP 替代了 ARP |
 | 安全威胁 | [tcpip/link.md](../tcpip/link.md#二层交换) | ARP 欺骗与 DHCP Snooping 防御 |
 | OSI 层 | [L2](../osi/L2-datalink.md) · [L3](../osi/L3-network.md) | 横跨两层的桥梁协议 |
 

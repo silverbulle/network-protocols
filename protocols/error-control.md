@@ -287,7 +287,7 @@ QUIC 差错控制:
 | 以太网 FCS | [osi/L2-datalink.md 差错检测](../osi/L2-datalink.md#4-差错检测) | CRC-32 工作原理 |
 | IPv4 校验和 | [protocols/ip.md IPv4 头部](../protocols/ip.md) | 仅校验头部 |
 | L1 FEC | [osi/L1-physical.md FEC](../osi/L1-physical.md#fec前向纠错-现代高速链路的标配) | RS-FEC / KP4 / BASE-R |
-| Wi-Fi L2 重传 | [osi/L2-datalink.md CSMA/CA](../osi/L2-datalink.md#csma-ca-工作原理wi-fi--80211) | ACK 机制 + 退避重传 |
+| Wi-Fi L2 重传 | [osi/L2-datalink.md CSMA/CA](../osi/L2-datalink.md#csmaca-工作原理wi-fi--80211) | ACK 机制 + 退避重传 |
 | QUIC 差错控制 | [protocols/udp.md](../protocols/udp.md) | QUIC 在 UDP 之上实现可靠传输 |
 | 加密 vs 校验 | [protocols/encryption-layers.md](../protocols/encryption-layers.md) | AEAD 同时提供加密 + 完整性 |
 | ICMP 错误报告 | [protocols/icmp.md](../protocols/icmp.md) | L3 层错误通告，不触发重传 |

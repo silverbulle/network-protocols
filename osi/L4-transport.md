@@ -105,7 +105,7 @@ Client                        Server
   │════ 连接关闭 ════════════════│
 ```
 
-> 详见 `protocols/tcp.md` 和 `protocols/udp.md`
+> 详见 [protocols/tcp.md](../protocols/tcp.md) 和 [protocols/udp.md](../protocols/udp.md)
 
 ---
 

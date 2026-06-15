@@ -14,7 +14,7 @@
 - **端口**：80 / 443
 - **用途**：Web 内容传输
 - **特点**：请求-响应模型，无状态（HTTP），HTTPS 基于 TLS 加密
-- **详见**：`protocols/http.md`
+- **详见**：[protocols/http.md](../protocols/http.md)
 
 ### FTP / SFTP
 - **端口**：21（控制）/ 20（数据）/ 22（SFTP）
@@ -30,7 +30,7 @@
 - **端口**：53
 - **用途**：域名到 IP 地址的解析
 - **特点**：UDP 为主，大包用 TCP；递归查询 + 迭代查询
-- **详见**：`protocols/dns.md`
+- **详见**：[protocols/dns.md](../protocols/dns.md)
 
 ### SSH / Telnet
 - **端口**：22 / 23

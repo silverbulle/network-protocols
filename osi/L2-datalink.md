@@ -22,7 +22,7 @@
 - 注意：只检测不纠正（纠正是传输层的职责）
 - 以太网使用 CRC-32（FCS 字段），校验错帧静默丢弃
 
-> 详见 [protocols/error-control.md L2](../protocols/error-control.md#l2-链路层-帧级检错--可选重传)
+> 详见 [protocols/error-control.md L2](../protocols/error-control.md#l2-链路层--帧级检错--可选重传)
 
 ### 5. 流量控制
 - 控制发送速率，防止接收方过载
@@ -348,7 +348,7 @@ Cisco HDLC 在 Address 后加了 2B Protocol 字段:
     → MPLS 更灵活、支持 VPN、流量工程，最终取代 Frame Relay
 ```
 
-### 4. ATM (Asynchronous Transfer Mode)
+### 4. ATM (异步传输模式, Asynchronous Transfer Mode)
 
 | 项 | 说明 |
 |----|------|
@@ -607,7 +607,7 @@ L2TP 结构:
 | 下层 | [L1 物理层](L1-physical.md) | 帧转换为比特流在物理介质上传输 |
 | 相关协议 | [ARP](../protocols/arp.md) | ARP 工作在 L2/L3 边界，为 IP 解析 MAC 地址 |
 | 链路层加密 | [protocols/encryption-layers.md L2](../protocols/encryption-layers.md#l2-链路层加密) | MACsec (802.1AE)、WPA3 无线加密 |
-| 链路层差错 | [protocols/error-control.md L2](../protocols/error-control.md#l2-链路层-帧级检错--可选重传) | 以太网 CRC-32 只检不重传，Wi-Fi 有 ACK 重传 |
+| 链路层差错 | [protocols/error-control.md L2](../protocols/error-control.md#l2-链路层--帧级检错--可选重传) | 以太网 CRC-32 只检不重传，Wi-Fi 有 ACK 重传 |
 | 以太网详解 | [tcpip/link.md 以太网部分](../tcpip/link.md#以太网-ethernet) | 帧格式、MTU、交换机原理 |
 | PPP/PPPoE | [PPP 章节](#1-ppp-point-to-point-protocol) | 点对点协议、宽带接入主流 |
 | STP/RSTP/MSTP | [STP 章节](#5-stp--rstp--mstp-生成树协议) | 防环协议家族，RSTP/MSTP 主流 |
