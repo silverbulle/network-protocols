@@ -134,6 +134,8 @@ NCP (网络控制协议)
   └─ ...
 ```
 
+> 更多 L2 协议详解（HDLC、Frame Relay、STP/RSTP/MSTP、LACP、LLDP、802.1X、L2TP）见 [osi/L2-datalink.md 常见数据链路层协议](../osi/L2-datalink.md#常见数据链路层协议)
+
 ## 二层交换
 
 ### 交换机转发方式
