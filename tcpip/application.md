@@ -107,4 +107,5 @@ Publisher → Broker ← Subscriber
 | 下层 | [transport.md](transport.md) | 应用层协议依赖传输层的 TCP 或 UDP |
 | 协议详解 | [HTTP](../protocols/http.md) · [DNS](../protocols/dns.md) · [DHCP](../protocols/dhcp.md) | 典型应用层协议深入解析 |
 | 加密层 | [HTTP - HTTPS](../protocols/http.md#https-http-over-tls) | TLS 在应用层与传输层之间提供加密 |
+| 协议依赖 | [osi/L7 协议依赖详解](../osi/L7-application.md#应用层协议依赖关系详解) | 各 L7 协议的传输层/安全/DNS 依赖矩阵与依赖链剖析 |
 | 案例 | [案例3: 三层架构](../cases/03-three-tier-architecture.md) | 公网用户 → CDN → WAF → App → DB 全链路 |
