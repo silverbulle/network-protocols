@@ -573,6 +573,7 @@ MPLS 出口 (LER):
 | **IPsec → IP** | IPsec 在 IP 层插入 ESP/AH，提供逐跳或隧道加密（站点 VPN） | ip, [加密层级](protocols/encryption-layers.md) |
 | **TLS → TCP + 应用** | TLS 1.3 在 L4/L7 之间提供端到端加密（HTTPS/SMTPS 等） | tcp, [加密层级](protocols/encryption-layers.md) |
 | **MACsec → 以太网帧** | 802.1AE 在 L2 逐跳加密整个以太网帧 | L2-datalink, [加密层级](protocols/encryption-layers.md) |
+| **差错控制贯穿全栈** | L1 FEC 纠错 → L2 CRC 检错 → L3 头部校验 → L4 TCP 可靠 → L7 业务重试 | [error-control](protocols/error-control.md) |
 
 ### 加密在各层的体现
 
@@ -596,6 +597,31 @@ L1 物理层    QKD · 线路加密器           ── 物理信号级
 | 邮件端到端 | PGP/S/MIME (L7) + TLS (L4) |
 
 > 详见 [protocols/encryption-layers.md](protocols/encryption-layers.md)：各层加密协议对比、IPsec VPN 完整工作流、WireGuard 解析、MACsec/WPA3 机制
+
+### 差错控制在各层的体现
+
+差错控制遵循**端到端原则**：中间层（L1-L3）尽力而为，真正的可靠性由端点（L4+）保证。
+
+```
+L7 应用层    HTTP 重试 · DNS 重传 · SHA/MD5 文件校验       ── 业务级校验
+L4 传输层    TCP: 校验和+SEQ+ACK+SACK+RTO+FastRetransmit ── 端到端可靠
+             UDP: 可选校验和, 不重传
+L3 网络层    IPv4 头部校验和 · ICMP 错误报告              ── 只检头部
+L2 链路层    Ethernet CRC-32 (只检不重传) · Wi-Fi ACK 重传 ── 单跳检错
+L1 物理层    FEC (RS-FEC/KP4/LDPC) · 交织               ── 在线纠错
+```
+
+| 层级 | 检错 | 纠错/重传 | 失败行为 |
+|------|------|----------|----------|
+| L1 | FEC 编码冗余 | **在线纠错 (ns 级)** | 超出纠错能力 → 丢包 |
+| L2 有线 | CRC-32 | ❌ 不重传 | 静默丢弃 |
+| L2 无线 | CRC-32 | ✅ ACK + 重传 | 超时重传 |
+| L3 | IPv4 头部校验 | ❌ 不重传 | ICMP 报告 + 丢包 |
+| L4 TCP | 16 bit 校验 | ✅ RTO + 快速重传 | 重传 + 拥塞控制 |
+| L4 UDP | 可选校验 | ❌ 不重传 | 静默丢弃 |
+| L7 | 哈希/签名/状态码 | ✅ 应用重试 | 取决于应用 |
+
+> 详见 [protocols/error-control.md](protocols/error-control.md)：各层差错控制机制对比、端到端原则、FEC/ARQ/AEAD 原理
 
 ---
 
@@ -632,7 +658,8 @@ L1 物理层    QKD · 线路加密器           ── 物理信号级
 │   ├── http.md                ← HTTP ── 应用层，经 TCP/TLS 或 QUIC 传输
 │   ├── dhcp.md                ← DHCP ── 应用层，用 UDP 广播分配 IP
 │   ├── mpls.md                ← MPLS ── Layer 2.5，标签交换，运营商骨干核心
-│   └── encryption-layers.md   ← 加密 ── 各层加密协议对比，IPsec/TLS/MACsec/WireGuard
+│   ├── encryption-layers.md   ← 加密 ── 各层加密协议对比，IPsec/TLS/MACsec/WireGuard
+│   └── error-control.md       ← 差错 ── 各层差错控制对比，FEC/CRC/TCP 可靠传输
 │
 └── references/                ← 参考资料
     └── rfc-index.md           ← RFC 文档索引

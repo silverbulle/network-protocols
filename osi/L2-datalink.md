@@ -20,6 +20,9 @@
 ### 4. 差错检测
 - CRC（循环冗余校验）检测帧传输错误
 - 注意：只检测不纠正（纠正是传输层的职责）
+- 以太网使用 CRC-32（FCS 字段），校验错帧静默丢弃
+
+> 详见 [protocols/error-control.md L2](../protocols/error-control.md#l2-链路层-帧级检错--可选重传)
 
 ### 5. 流量控制
 - 控制发送速率，防止接收方过载
@@ -180,4 +183,5 @@ RTS/CTS 握手机制 (解决隐藏终端问题):
 | 下层 | [L1 物理层](L1-physical.md) | 帧转换为比特流在物理介质上传输 |
 | 相关协议 | [ARP](../protocols/arp.md) | ARP 工作在 L2/L3 边界，为 IP 解析 MAC 地址 |
 | 链路层加密 | [protocols/encryption-layers.md L2](../protocols/encryption-layers.md#l2-链路层加密) | MACsec (802.1AE)、WPA3 无线加密 |
+| 链路层差错 | [protocols/error-control.md L2](../protocols/error-control.md#l2-链路层-帧级检错--可选重传) | 以太网 CRC-32 只检不重传，Wi-Fi 有 ACK 重传 |
 | 以太网详解 | [tcpip/link.md 以太网部分](../tcpip/link.md#以太网-ethernet) | 帧格式、MTU、交换机原理 |

@@ -219,7 +219,10 @@ PAM-4:        4 电平，每符号 2 bit
 - **数据速率**：实际传输的比特率（bps）
 - **衰减**：信号随距离减弱的程度
 - **时延**：信号从发送到接收的时间
-- **误码率 (BER)**：传输错误的比特比例
+- **误码率 (BER)**：传输错误的比特比例（裸 ~10⁻⁶，FEC 后 ~10⁻¹²）
+- **FEC 纠错**：物理层在线纠错（Reed-Solomon / LDPC / 卷积码），ns 级延迟
+
+> 详见 [protocols/error-control.md L1](../protocols/error-control.md#l1-物理层--比特级纠错fec)
 
 ---
 

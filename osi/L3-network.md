@@ -431,3 +431,4 @@ NBMA: Frame Relay / ATM → 需手动配邻居，选举 DR
 | IS-IS 详解 | [IS-IS 章节](#is-is-intermediate-system-to-intermediate-system) | 运营商骨干首选，L2 之上的链路状态协议 |
 | 现代演进 | [现代演进章节](#6-现代演进) | SR-MPLS、SRv6、BGP-LS、BGP EVPN |
 | 网络层加密 | [protocols/encryption-layers.md L3](../protocols/encryption-layers.md#l3-网络层加密) | IPsec 传输/隧道模式、WireGuard、IKEv2 协商流程 |
+| 网络层差错 | [protocols/error-control.md L3](../protocols/error-control.md#l3-网络层--仅校验头部--icmp-错误报告) | IPv4 头部校验和、ICMP 错误报告、IPv6 移除头部校验 |

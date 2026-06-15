@@ -156,4 +156,5 @@ ECN 是丢包之外的另一种拥塞信号机制：路由器在拥塞时标记 
 | TCP 详解 | [protocols/tcp.md](../protocols/tcp.md) | 报文格式、状态机、拥塞控制四阶段 |
 | UDP 详解 | [protocols/udp.md](../protocols/udp.md) | 无连接传输、QUIC 的底层 |
 | 传输层加密 | [protocols/encryption-layers.md L4](../protocols/encryption-layers.md#l4-传输层加密) | TLS 1.3、QUIC 在 L4 提供端到端加密 |
+| 差错控制 | [protocols/error-control.md](../protocols/error-control.md) | 各层差错控制对比，TCP 可靠传输是 L4 层主战场 |
 | 案例 | [案例1: 负载均衡](../cases/01-remote-load-balancing.md) | TCP+TLS+HTTP 在公网上的完整路径 |
