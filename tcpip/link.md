@@ -170,6 +170,7 @@ NCP (网络控制协议)
 | OSI 对应 | [L2 数据链路层](../osi/L2-datalink.md) · [L1 物理层](../osi/L1-physical.md) | TCP/IP 网络接口层 = OSI L1+L2 |
 | 上层 | [internet.md](internet.md) | 网络层的 IP 包封装在以太网帧中 |
 | Layer 2.5 | [MPLS](../protocols/mpls.md) | MPLS 标签插入在 L2 帧头和 L3 IP 头之间 |
+| Overlay | [VXLAN](../protocols/vxlan.md) | L2 over UDP 4789，数据中心多租户 Overlay（跑在 L3 之上） |
 | 相关协议 | [ARP](../protocols/arp.md) | 工作在 L2/L3 边界，为 IP 层解析 MAC 地址 |
 | DHCP | [protocols/dhcp.md](../protocols/dhcp.md) | 设备通过 DHCP 获取 IP，DHCP 广播依赖链路层 |
 | 链路层加密 | [protocols/encryption-layers.md L2](../protocols/encryption-layers.md#l2-链路层加密) | MACsec、WPA2/3 无线加密 |

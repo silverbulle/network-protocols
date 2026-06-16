@@ -176,6 +176,7 @@ RTS/CTS 握手机制 (解决隐藏终端问题):
 | **LLDP (802.1AB)** | LAN 发现 | 邻居发现 | 主流 |
 | **802.1X / EAP** | LAN 接入控制 | 端口认证 | 主流 |
 | **L2TP** | 隧道 | VPN（常叠加 IPsec） | 遗留 |
+| **VXLAN (RFC 7348)** | L2 Overlay over UDP | 数据中心多租户、跨 L3 虚拟 L2 | 主流（配合 BGP EVPN） |
 
 ### 1. PPP (Point-to-Point Protocol)
 
@@ -594,6 +595,9 @@ L2TP 结构:
 | LLDP | 发现协议 | P2P | — | 主流 | 邻居发现、拓扑收集 |
 | 802.1X | 接入控制 | P2P | — | 主流 | 端口认证、NAC |
 | L2TP | 隧道 | P2P | ❌ | 遗留 | VPN (L2TP/IPsec)、L2VPN |
+| **VXLAN** | Overlay | 多点 | ❌ | 主流 | 数据中心多租户、跨 L3 虚拟 L2 |
+
+> VXLAN 详解见 [protocols/vxlan.md](../protocols/vxlan.md)：报文格式、VTEP/NVE/VNI、Flood-and-Learn vs BGP EVPN、BUM 处理、部署场景
 
 ---
 
@@ -604,6 +608,7 @@ L2TP 结构:
 | TCP/IP 对应 | [tcpip/link.md](../tcpip/link.md) | L1+L2 合并为 TCP/IP 网络接口层 |
 | 上层 | [L3 网络层](L3-network.md) | 网络层包封装在链路层帧中 |
 | Layer 2.5 | [MPLS](../protocols/mpls.md) | 标签交换，插入在 L2 帧头和 L3 IP 头之间 |
+| Overlay | [VXLAN](../protocols/vxlan.md) | L2 over UDP 4789，数据中心多租户主流 |
 | 下层 | [L1 物理层](L1-physical.md) | 帧转换为比特流在物理介质上传输 |
 | 相关协议 | [ARP](../protocols/arp.md) | ARP 工作在 L2/L3 边界，为 IP 解析 MAC 地址 |
 | 链路层加密 | [protocols/encryption-layers.md L2](../protocols/encryption-layers.md#l2-链路层加密) | MACsec (802.1AE)、WPA3 无线加密 |

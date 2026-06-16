@@ -554,6 +554,8 @@ SR-MPLS 数据面:
 | 转发效率 | 高 | 中（封装开销） | 低 | 高 |
 | 状态 | 有状态 | 少状态 | 无状态 | 无/少状态 |
 
+> VXLAN 完整详解见 [protocols/vxlan.md](vxlan.md)：报文格式、VTEP/NVE/VNI、控制面演进、BUM 处理
+
 ---
 
 ## 安全考虑

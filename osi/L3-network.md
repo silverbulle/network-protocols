@@ -427,6 +427,7 @@ NBMA: Frame Relay / ATM → 需手动配邻居，选举 DR
 | 下层 | [L2 数据链路层](L2-datalink.md) | IP 包封装在链路层帧中传输 |
 | 核心协议 | [IP](../protocols/ip.md) · [ICMP](../protocols/icmp.md) · [ARP](../protocols/arp.md) | 网络层三大协议 |
 | Layer 2.5 | [MPLS](../protocols/mpls.md) | 标签交换，工作在 L2/L3 之间，运营商骨干核心 |
+| Overlay | [VXLAN](../protocols/vxlan.md) | L2 over UDP 隧道，跑在 L3 之上，数据中心主流 |
 | 路由协议 | [tcpip/internet.md 路由部分](../tcpip/internet.md#路由协议) | IGP/EGP 对比与配置视角 |
 | IS-IS 详解 | [IS-IS 章节](#is-is-intermediate-system-to-intermediate-system) | 运营商骨干首选，L2 之上的链路状态协议 |
 | 现代演进 | [现代演进章节](#6-现代演进) | SR-MPLS、SRv6、BGP-LS、BGP EVPN |

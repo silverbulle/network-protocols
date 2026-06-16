@@ -254,6 +254,7 @@ DiffServ = 在 IP 头部标记优先级，路由器按标记做队列调度
 | ICMP | [protocols/icmp.md](../protocols/icmp.md) | 直接封装在 IP 中（Protocol=1），不经过 TCP/UDP |
 | ARP | [protocols/arp.md](../protocols/arp.md) | L2/L3 桥梁，IP 发包前解析下一跳 MAC |
 | MPLS | [protocols/mpls.md](../protocols/mpls.md) | Layer 2.5，在 IP 和链路层之间插入标签，运营商骨干核心 |
+| VXLAN | [protocols/vxlan.md](../protocols/vxlan.md) | L2 over UDP 4789 Overlay，数据中心多租户主流，配合 BGP EVPN |
 | IPsec | [protocols/encryption-layers.md L3](../protocols/encryption-layers.md#l3-网络层加密) | 网络层加密：ESP 传输模式/隧道模式、IKEv2、WireGuard |
 | 路由协议详解 | [osi/L3-network.md 路由协议详解](../osi/L3-network.md#路由协议详解) | OSPF/IS-IS/RIP/EIGRP/BGP 实现逻辑、角色定位、协议对比 |
 | 案例 | [案例2: VPN](../cases/02-vpn-remote-access.md) | IPSec 双层 IP 封装与隧道传输 |
