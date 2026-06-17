@@ -174,5 +174,6 @@ NCP (网络控制协议)
 | 相关协议 | [ARP](../protocols/arp.md) | 工作在 L2/L3 边界，为 IP 层解析 MAC 地址 |
 | DHCP | [protocols/dhcp.md](../protocols/dhcp.md) | 设备通过 DHCP 获取 IP，DHCP 广播依赖链路层 |
 | 链路层加密 | [protocols/encryption-layers.md L2](../protocols/encryption-layers.md#l2-链路层加密) | MACsec、WPA2/3 无线加密 |
+| 宽带接入 | [osi/L1 宽带接入技术](../osi/L1-physical.md#宽带接入技术last-mile--最后一公里) | ADSL/VDSL、HFC/DOCSIS、PON (GPON/XGS-PON)、5G FWA |
 | 案例 | [案例4: 从零连通](../cases/04-dhcp-and-arp.md) | 新设备 DHCP 获取 IP + ARP 冲突检测 + 首次路由 |
 | 案例 | [案例5: 数据中心](../cases/05-datacenter-east-west.md) | Overlay 网络下 Underlay 帧的封装与传输 |
